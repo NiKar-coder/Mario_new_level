@@ -71,19 +71,33 @@ class Camera:
     def __init__(self):
         pass
 
-    @staticmethod
-    def update(group):
+    def update(self, group):
         for i in group:
             if not isinstance(i, Player):
                 i.rect.x -= dx
+                if i.rect.x < 0:
+                    i.rect.x = W - tile_width
+                elif i.rect.x >= W:
+                    i.rect.x = 0
                 i.rect.y -= dy
+                if i.rect.y < 0:
+                    i.rect.y = H - tile_height
+                elif i.rect.y >= H:
+                    i.rect.y = 0
 
-    @staticmethod
-    def return_update(group):
+    def return_update(self, group):
         for i in group:
             if not isinstance(i, Player):
                 i.rect.x += dx
+                if i.rect.x < 0:
+                    i.rect.x = W - tile_width
+                elif i.rect.x >= W:
+                    i.rect.x = 0
                 i.rect.y += dy
+                if i.rect.y < 0:
+                    i.rect.y = H - tile_height
+                elif i.rect.y >= H:
+                    i.rect.y = 0
 
 
 def generate_level(level):
